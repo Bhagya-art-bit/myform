@@ -1,0 +1,173 @@
+<div>
+  <h1> Registration Form</h1>
+  <h2 id="success"></h2>
+  <div id="details">
+
+  </div>
+    <form id="reg">
+    <label>First Name</label>
+    <input type="text" id="FirstName" name="FullName" placeholder="Enter your name" required/>
+    <span id="usernameError" class="error"></span>
+    <br><br>
+    
+    <label>email</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required/>
+    <span id="emailError" class="error"></span>
+    <br><br>
+
+    <label>Phone number</label>
+    <input type="text" id="Phonenumber" name="phonenumber" placeholder="Enter your phone number" required/>
+    <span id="Phone numberError" class="error"></span>
+    <br><br>
+
+    <label>password</label>
+    <input type="password" name="password" id="password" placeholder="Enter your password" required/>
+    <p id="passwordError" class="error"></p>
+    <br><br>
+    <label>confirm password</label>
+
+    <input type="password" name="password" id="confirm" placeholder="Enter your password" required/>
+    <p id="confirmError" class="error"></p>
+    <br><br>
+    <button> submit</button>
+    </form>
+
+    <script>
+    function validateForm() {
+      const pass = document.getElementById("password");
+      const error1 = document.getElementById("passwordError");
+      const confirm = document.getElementById("confirm");
+      const error2 = document.getElementById("confirmError");
+      pass.addEventListener("input",()=>{
+      if ( pass.value.length<6 ) {
+        error1.textContent = "Error: Name field cannot be empty.";
+        error1.style.color="red";
+      }else{
+        error1.textContent="";
+      }});
+      confirm.addEventListener("input",()=>{
+      if ( confirm.value!=pass.value) {
+        error2.textContent = "Error: Name field cannot be empty.";
+        error2.style.color="red";
+        
+      }else{
+        error2.textContent="";
+      }});
+
+      
+      
+    }
+    const reg=document.getElementById("reg");
+    const details=document.getElementById("details");
+    const success=document.getElementById("success");
+    const name= document.getElementById("FirstName");
+    const email= document.getElementById("email");
+    
+    reg.addEventListener("submit",(e)=>{
+      e.preventDefault();
+      alert("Registration Successfull");
+      reg.style.display="none";
+      success.textContent="Registration Completed";
+      success.classList.add("show");
+      success.style.color= "green";
+      details.innerHTML=`
+      <h3>submitted details:</h3>
+      <p><strong>Full Name:</strong>${name.value}</p>
+      <p><strong>email:</strong>${email.value}</p>
+
+      `
+    }
+      
+    );
+    validateForm();
+  </script>
+
+</div>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    div {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input:valid {
+      border-color: #4CAF50;
+    }
+
+    input:invalid {
+      border-color: #f44336;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #msg, #msg2 {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    #success {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+    }
+
+    #success.show {
+      opacity: 1;
+    }
+
+    #details {
+      margin-top: 20px;
+      background: #e7ffe7;
+      padding: 15px;
+      border-radius: 5px;
+      color: #333;
+    }
+  </style>
